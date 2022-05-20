@@ -1,0 +1,13 @@
+name: GamemodePlus
+version: '${project.version}'
+main: moe.myuuiii.gamemodeplus.GamemodePlus
+api-version: 1.18
+authors: [ Myuuiii ]
+description: Simplifications and extensions for the default gamemode command
+commands:
+  gm:
+  gamemode:
+  gmc:
+  gms:
+  gma:
+  gmsp:
