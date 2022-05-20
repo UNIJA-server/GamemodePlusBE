@@ -4,6 +4,8 @@
 
 A simple plugin that adds some shortcuts to the gamemode command.
 
+</div>
+
 ## Commands
 
 `/gm` - Query your current gamemode
@@ -38,5 +40,3 @@ A simple plugin that adds some shortcuts to the gamemode command.
 **Allow the player to change their own or someone else's (if enabled) gamemode to Survival**: `gamemodeplus.set.survival`
 **Allow the player to change their own or someone else's (if enabled) gamemode to Adventure**: `gamemodeplus.set.adventure`
 **Allow the player to change their own or someone else's (if enabled) gamemode to Spectator**: `gamemodeplus.set.spectator`
-
-</div>
