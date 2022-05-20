@@ -30,7 +30,7 @@ A simple plugin that adds some shortcuts to the gamemode command.
 
 ### Command parameters
 
-**Gamemode** - The gamemode to set the target user to.
+**Gamemode**
 
 -   **Creative**: `creative`, `c`, `1`
 -   **Survival**: `survival`, `s`, `0`
