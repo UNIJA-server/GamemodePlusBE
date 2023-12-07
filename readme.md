@@ -1,34 +1,34 @@
 <div align="center">
 
-# Gamemode+
+# Gamemode+ Belarusian-версія
 
-A simple plugin that adds some shortcuts to the gamemode command.
+Просты плагін для змянення рэжымаў гульні.
 
 </div>
 
 ## Commands
 
-`/gm` - Query your current gamemode
+`/gm` - Паказвае ваш дзейны рэжым гульні
 
-`/gm <gamemode>` - Set your gamemode to the given gamemode
+`/gm <gamemode>` - Пераключае рэжым гульні
 
-`/gm <gamemode> <user>` - Set the target user's gamemode
+`/gm <gamemode> <user>` - Пераключае рэжым гульні іншага гульца
 
-`/gamemode` - Alias
+`/gamemode` - дадатковая каманда
 
-`/gamemode <gamemode>` - Alias
+`/gamemode <gamemode>` - дадатковая каманда
 
-`/gamemode <gamemode> <user>` - Alias
+`/gamemode <gamemode> <user>` - дадатковая каманда
 
-`/gmc` - Set your gamemode to Creative
+`/gmc` - Пераключыць рэжым гульні ў Крэатыў
 
-`/gms` - Set your gamemode to Survival
+`/gms` - Пераключыць рэжым гульні ў Выжыванне
 
-`/gma` - Set your gamemode to Adventure
+`/gma` - Пераключыць рэжым гульні ў Прыгоды
 
-`/gmsp` - Set your gamemode to Spectator
+`/gmsp` - Пераключыць рэжым гульні ў Назіральнік
 
-### Command parameters
+### Параметры каманд
 
 **Gamemode**
 
@@ -37,16 +37,16 @@ A simple plugin that adds some shortcuts to the gamemode command.
 -   **Adventure**: `adventure`, `a`, `2`
 -   **Spectator**: `spectator`, `sp`, `3`
 
-## Permissions
+## Дазволы
 
-**Allow plugin usage**: `gamemodeplus.use`
+**Магчымасць карыстацца плагінам**: `gamemodeplus.use`
 
-**Allow to change other person's gamemode**: `gamemodeplus.use.other`
+**Магчымасць пераключаць рэжым гульні іншым гульцам**: `gamemodeplus.use.other`
 
-**Allow the player to change their own or someone else's (if enabled) gamemode to Creative**: `gamemodeplus.set.creative`
+**Магчымасць пераключаць свой рэжым гульні ці рэжым гульні іншага гульца ў Крэатыў**: `gamemodeplus.set.creative`
 
-**Allow the player to change their own or someone else's (if enabled) gamemode to Survival**: `gamemodeplus.set.survival`
+**Магчымасць пераключаць свой рэжым гульні ці рэжым гульні іншага гульца ў Выжыванне**: `gamemodeplus.set.survival`
 
-**Allow the player to change their own or someone else's (if enabled) gamemode to Adventure**: `gamemodeplus.set.adventure`
+**Магчымасць пераключаць свой рэжым гульні ці рэжым гульні іншага гульца ў Прыгоды**: `gamemodeplus.set.adventure`
 
-**Allow the player to change their own or someone else's (if enabled) gamemode to Spectator**: `gamemodeplus.set.spectator`
+**Магчымасць пераключаць свой рэжым гульні ці рэжым гульні іншага гульца ў Назіральнік**: `gamemodeplus.set.spectator`
