@@ -5,6 +5,7 @@ import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 
 import net.md_5.bungee.api.ChatColor;
@@ -13,6 +14,10 @@ public class GamemodeCommand implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+		if (sender instanceof ConsoleCommandSender && args.length == 2) {
+			changeGamemode(sender, args);
+			return false;
+		}
 
 		if (!(sender instanceof Player)) {
 			sender.sendMessage(Messages.NotAPlayer);
@@ -20,7 +25,6 @@ public class GamemodeCommand implements CommandExecutor {
 		}
 
 		Player player = (Player) sender;
-		Player targetPlayer = null;
 
 		if (!player.hasPermission(Permissions.UsePlugin)) {
 			player.sendMessage(Messages.NotAllowedToUsePlugin);
@@ -63,41 +67,44 @@ public class GamemodeCommand implements CommandExecutor {
 			}
 
 		} else if (args.length == 2) {
-
-			if (!player.hasPermission(Permissions.GamemodeForOthers)) {
-				player.sendMessage(Messages.NotAllowedToChangeForOthers);
-				return false;
-			}
-
-			GameMode selectedGamemode = GetGamemodeFromString(args[0].toLowerCase());
-			if (selectedGamemode.equals(null)) {
-				player.sendMessage(Messages.GamemodeNotRecognized);
-				return false;
-			}
-
-			targetPlayer = Bukkit.getPlayer(args[1]);
-
-			if (targetPlayer.equals(null)) {
-				player.sendMessage(Messages.PlayerNotFound);
-				return false;
-			}
-
-			if (IsAllowedToChangeTo(player, selectedGamemode)) {
-				player.sendMessage(Messages.Prefix + "You changed " + ChatColor.YELLOW + targetPlayer.getName()
-						+ ChatColor.RESET + "'s gamemode to "
-						+ GetGamemodeString(selectedGamemode));
-				targetPlayer.sendMessage(Messages.Prefix + ChatColor.YELLOW + player.getName() + ChatColor.RESET
-						+ " changed your gamemode to "
-						+ GetGamemodeString(selectedGamemode));
-				targetPlayer.setGameMode(selectedGamemode);
-				return false;
-			} else {
-				player.sendMessage(Messages.NoPermissionToChangeToForOther + GetGamemodeString(selectedGamemode));
-				return false;
-			}
+			changeGamemode(sender, args);
+			return false;
 		}
 
 		return false;
+	}
+
+	private void changeGamemode(CommandSender sender, String[] args) {
+		Player targetPlayer;
+		if (!sender.hasPermission(Permissions.GamemodeForOthers)) {
+			sender.sendMessage(Messages.NotAllowedToChangeForOthers);
+			return;
+		}
+
+		GameMode selectedGamemode = GetGamemodeFromString(args[0].toLowerCase());
+		if (selectedGamemode == null) {
+			sender.sendMessage(Messages.GamemodeNotRecognized);
+			return;
+		}
+
+		targetPlayer = Bukkit.getPlayer(args[1]);
+
+		if (targetPlayer == null) {
+			sender.sendMessage(Messages.PlayerNotFound);
+			return;
+		}
+
+		if (IsAllowedToChangeTo(sender, selectedGamemode)) {
+			sender.sendMessage(Messages.Prefix + "You changed " + ChatColor.YELLOW + targetPlayer.getName()
+					+ ChatColor.RESET + "'s gamemode to "
+					+ GetGamemodeString(selectedGamemode));
+			targetPlayer.sendMessage(Messages.Prefix + ChatColor.YELLOW + sender.getName() + ChatColor.RESET
+					+ " changed your gamemode to "
+					+ GetGamemodeString(selectedGamemode));
+			targetPlayer.setGameMode(selectedGamemode);
+        } else {
+			sender.sendMessage(Messages.NoPermissionToChangeToForOther + GetGamemodeString(selectedGamemode));
+        }
 	}
 
 	public GameMode GetGamemodeFromString(String input) {
@@ -138,17 +145,16 @@ public class GamemodeCommand implements CommandExecutor {
 		}
 	}
 
-	public boolean IsAllowedToChangeTo(Player player, GameMode gamemode) {
-		String permission = "";
-		switch (gamemode) {
+	public boolean IsAllowedToChangeTo(CommandSender commandSender, GameMode gamemode) {
+        switch (gamemode) {
 			case CREATIVE:
-				return player.hasPermission(Permissions.SetToCreative);
+				return commandSender.hasPermission(Permissions.SetToCreative);
 			case SURVIVAL:
-				return player.hasPermission(Permissions.SetToSurvival);
+				return commandSender.hasPermission(Permissions.SetToSurvival);
 			case ADVENTURE:
-				return player.hasPermission(Permissions.SetToAdventure);
+				return commandSender.hasPermission(Permissions.SetToAdventure);
 			case SPECTATOR:
-				return player.hasPermission(Permissions.SetToSpectator);
+				return commandSender.hasPermission(Permissions.SetToSpectator);
 			default:
 				return false;
 		}
